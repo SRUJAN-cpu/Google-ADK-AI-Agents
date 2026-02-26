@@ -42,4 +42,41 @@ _Compute Engine API (compute.googleapis.com)_ provides secure and customizable v
      If the service account is missing, you can list the accounts in your project to find the email address (it should end in .iam.gserviceaccount.com) by running: gcloud iam service-accounts list.
 
 # 5. **Create agent workflow**
-     For example refer ---> https://github.com/SRUJAN-cpu/AI-agents-using-Google-ADK/blob/main/adk_and_a2a/illustration_agent/agent.py 
+   For example refer
+     `https://github.com/SRUJAN-cpu/AI-agents-using-Google-ADK/blob/main/adk_and_a2a/illustration_agent/agent.py`
+
+# 6. **Prepare the app for deployment**
+   Set up IAM permissions
+    With the local code ready,
+        1. In the terminal, load the variables into your shell session.
+            `source .env`
+            
+   **Note:** If the Cloud Shell session refreshes or you open a new terminal tab, you may need to run source .env again to reload these variables.
+        2. Create a dedicated service account for your Cloud Run service.
+            _so that it has its own specific permission_
+                `gcloud iam service-accounts create ${SA_NAME} \
+                    --display-name="Service Account for this agent "`
+        > By creating a dedicated identity for this specific application, you ensure the agent only has the exact permissions it needs, rather than using a default account with overly broad access.
+        3. Grant the service account the Vertex AI User role, which gives it permission to call Google's models.
+            `# Grant the "Vertex AI User" role to your service account
+                gcloud projects add-iam-policy-binding $PROJECT_ID \
+                  --member="serviceAccount:$SERVICE_ACCOUNT" \
+                  --role="roles/aiplatform.user"`
+
+# 7. **Depoly the agent using the ADK CLI** 
+    # Run the deployment command
+    uvx --from google-adk==1.14.0 \
+    adk deploy cloud_run \
+      --project=$PROJECT_ID \
+      --region=europe-west1 \
+      --service_name=zoo-tour-guide \
+      --with_ui \
+      . \
+      -- \
+      --labels=dev-tutorial=codelab-adk \
+      --service-account=$SERVICE_ACCOUNT
+IF prompted for Y/N: Hit (Y)
+
+# 8. **Test and enjoy 🥳**
+        
+        
