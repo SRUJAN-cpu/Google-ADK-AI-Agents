@@ -1,13 +1,13 @@
 # 1. **Set your Project** 
-    `gcloud config set project [PROJECT_ID]`
+    gcloud config set project [PROJECT_ID]
 
 # 2. **Enable required APIs**
-    `gcloud services enable \
+    gcloud services enable \
     run.googleapis.com \
     artifactregistry.googleapis.com \
     cloudbuild.googleapis.com \
     aiplatform.googleapis.com \
-    compute.googleapis.com`
+    compute.googleapis.com
 
 # **Introducing the APIs**
 
@@ -24,18 +24,18 @@ _Compute Engine API (compute.googleapis.com)_ provides secure and customizable v
 
 # 4. **Set up environment variables**
     1. Set the variables in your terminal first
-     `PROJECT_ID=$(gcloud config get-value project)
+      PROJECT_ID=$(gcloud config get-value project)
       PROJECT_NUMBER=$(gcloud projects describe $PROJECT_ID --format="value(projectNumber)")
-      SA_NAME=Service_name`
+      SA_NAME=Service_name
 
     2. Create the .env file using those variables
-     `cat <<EOF > .env
+      cat <<EOF > .env
       PROJECT_ID=$PROJECT_ID
       PROJECT_NUMBER=$PROJECT_NUMBER
       SA_NAME=$SA_NAME
       SERVICE_ACCOUNT=${SA_NAME}@${PROJECT_ID}.iam.gserviceaccount.com
       MODEL="gemini-2.5-flash"
-      EOF`
+      EOF
 
    **NOTE**
      Check the .env file and make sure both PROJECT_ID, PROJECT_NUMBER, and SERVICE_ACCOUNT have been assigned values. If project details are missing, find them by running gcloud projects list.
