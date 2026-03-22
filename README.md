@@ -78,5 +78,27 @@ _Compute Engine API (compute.googleapis.com)_ provides secure and customizable v
 IF prompted for Y/N: Hit (Y)
 
 # 8. **Test and enjoy 🥳**
-        
-        
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+One more way of running the agent
+Follow the above 1st and 2nd step
+# 3. Create project directory and navigate into it:
+    mkdir ai-agents-adk
+    cd ai-agents-adk
+
+# 4. Create and activate a virtual environment:
+    uv venv --python 3.12
+    source .venv/bin/activate
+
+# 5. Install adk page
+    uv pip install google-adk
+
+# 6. Create your agent
+    adk create <your-agent-name>
+    CHOOSE YOUR CHOICE WHEN PROMPTS SHOWS UP
+
+# 7. Run your agent in termnial or web:
+    # terminal 
+    adk run <<your-agent-name>
+    # web
+    adk run
