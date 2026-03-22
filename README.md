@@ -88,7 +88,7 @@ Follow the above 1st and 2nd step
 
 # 4. Create and activate a virtual environment:
     uv venv --python 3.12
-    source .venv/bin/activate
+    source .venv/Scripts/activate
 
 # 5. Install adk page
     uv pip install google-adk
