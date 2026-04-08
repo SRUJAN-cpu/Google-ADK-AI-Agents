@@ -1,2 +1,5 @@
 google-adk==1.27.2
 psycopg2-binary
+google-api-python-client
+google-auth-httplib2
+python-dotenv
